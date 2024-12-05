@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { ServiceDetails } from '@/components/ServiceDetails';
 import { Header } from '@/components/Header';
+import { ChatWidget } from '@/components/ChatWidget';
 
 const services = {
   regular: {
@@ -133,6 +134,7 @@ export default function App() {
           </div>
         )}
       </main>
+      <ChatWidget />
     </div>
   );
 }
