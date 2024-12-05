@@ -2,34 +2,23 @@ import { useEffect } from 'react';
 
 export function ChatWidget() {
   useEffect(() => {
-    // Only load the widget if it hasn't been loaded already
-    if (!document.getElementById('appraisily-chat-widget-loader')) {
-      // Create container div
-      const container = document.createElement('div');
-      container.id = 'appraisily-chat-widget-container';
-      document.body.appendChild(container);
+    const script = document.createElement('script');
+    script.src = 'https://frolicking-macaron-54f908.netlify.app/widget-loader.min.js';
+    script.async = true;
+    script.id = 'appraisily-chat-widget-loader';
+    document.body.appendChild(script);
 
-      // Create and append script
-      const script = document.createElement('script');
-      script.id = 'appraisily-chat-widget-loader';
-      script.async = true;
-      script.src = 'https://frolicking-macaron-54f908.netlify.app/widget-loader.js';
-      document.head.appendChild(script);
-    }
-
-    // Cleanup function
     return () => {
-      const script = document.getElementById('appraisily-chat-widget-loader');
-      const container = document.getElementById('appraisily-chat-widget-container');
-      
-      if (script) {
-        script.remove();
+      const scriptElement = document.getElementById('appraisily-chat-widget-loader');
+      if (scriptElement) {
+        scriptElement.remove();
       }
-      if (container) {
-        container.remove();
+      const containerElement = document.getElementById('appraisily-chat-widget-container');
+      if (containerElement) {
+        containerElement.remove();
       }
     };
-  }, []); // Empty dependency array means this runs once on mount
+  }, []);
 
-  return null; // This component doesn't render anything visible
+  return null;
 }
